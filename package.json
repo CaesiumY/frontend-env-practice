@@ -1,0 +1,29 @@
+{
+  "name": "frontend-env-practice",
+  "version": "1.0.0",
+  "description": "프론트엔드 개발환경의 이해와 실습",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaesiumY/frontend-env-practice.git"
+  },
+  "keywords": [
+    "webpack",
+    "babel",
+    "prettier",
+    "eslint"
+  ],
+  "author": "caesiumy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CaesiumY/frontend-env-practice/issues"
+  },
+  "homepage": "https://github.com/CaesiumY/frontend-env-practice#readme",
+  "devDependencies": {
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
