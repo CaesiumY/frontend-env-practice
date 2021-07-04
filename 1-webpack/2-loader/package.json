@@ -8,6 +8,7 @@
     "file-loader": "^6.2.0",
     "lite-server": "^2.6.1",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
