@@ -9,5 +9,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.body.appendChild(img);
 
-  console.log("img", img);
+  console.log(process.env.NODE_ENV); // "development"
 });
