@@ -26,6 +26,10 @@ module.exports = {
           limit: 10000,
         },
       },
+      {
+        test: /\.js$/,
+        use: [path.resolve("./src/loader/myLoader.js")],
+      },
     ],
   },
 };
