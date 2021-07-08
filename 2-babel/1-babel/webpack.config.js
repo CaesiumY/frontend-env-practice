@@ -10,11 +10,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || "development";
 module.exports = {
   mode: "development",
   entry: {
-    main: "./src/app.js"
+    main: "./src/app.js",
   },
   output: {
     filename: "[name].js",
-    path: path.resolve("./dist")
+    path: path.resolve("./dist"),
   },
   module: {
     rules: [
@@ -24,43 +24,48 @@ module.exports = {
           process.env.NODE_ENV === "production"
             ? MiniCssExtractPlugin.loader // 프로덕션 환경
             : "style-loader", // 개발 환경
-          "css-loader"
-        ]
+          "css-loader",
+        ],
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
         loader: "url-loader",
         options: {
           name: "[name].[ext]?[hash]",
-          limit: 10000 // 10Kb
-        }
-      }
+          limit: 10000, // 10Kb
+        },
+      },
       /**
        * TODO: babel-loader를 구성해 보세요.
        */
-    ]
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
+    ],
   },
   plugins: [
     new webpack.BannerPlugin({
-      banner: `빌드 날짜: ${new Date().toLocaleString()}`
+      banner: `빌드 날짜: ${new Date().toLocaleString()}`,
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       templateParameters: {
-        env: process.env.NODE_ENV === "development" ? "(개발용)" : ""
+        env: process.env.NODE_ENV === "development" ? "(개발용)" : "",
       },
       minify:
         process.env.NODE_ENV === "production"
           ? {
               collapseWhitespace: true, // 빈칸 제거
-              removeComments: true // 주석 제거
+              removeComments: true, // 주석 제거
             }
           : false,
-      hash: process.env.NODE_ENV === "production"
+      hash: process.env.NODE_ENV === "production",
     }),
     new CleanWebpackPlugin(),
     ...(process.env.NODE_ENV === "production"
       ? [new MiniCssExtractPlugin({ filename: `[name].css` })]
-      : [])
-  ]
+      : []),
+  ],
 };
