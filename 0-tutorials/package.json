@@ -34,6 +34,7 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.6",
+    "eslint": "^7.30.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.2",
     "mini-css-extract-plugin": "^1.6.2",
