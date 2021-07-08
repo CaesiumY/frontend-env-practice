@@ -35,6 +35,11 @@ module.exports = {
           limit: 10000,
         },
       },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
     ],
   },
   plugins: [
