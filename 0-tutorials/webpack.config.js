@@ -4,6 +4,7 @@ const banner = require("./src/plugins/banner");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const apiMocker = require("connect-api-mocker");
 
 module.exports = {
   mode: "development",
@@ -19,6 +20,9 @@ module.exports = {
     contentBase: path.join(__dirname, "dist/"),
     overlay: true,
     stats: "errors-only",
+    before: (app) => {
+      app.use(apiMocker("/api", "mocks/api"));
+    },
   },
   devtool: "source-map",
 

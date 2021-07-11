@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress",
     "prod": "NODE_ENV=production webpack --progress",
-    "start": "webpack-dev-server --progress",
+    "start": "webpack-dev-server --hot --progress",
     "lint": "npx eslint src --fix"
   },
   "repository": {
@@ -35,6 +35,7 @@
     "@babel/preset-env": "^7.14.7",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "connect-api-mocker": "^1.10.0",
     "css-loader": "^5.2.6",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
@@ -50,6 +51,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^2.6.12"
   }
 }
