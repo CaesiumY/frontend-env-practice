@@ -7,15 +7,21 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
-
   entry: {
     main: "./src/app.js",
   },
-
   output: {
     path: path.resolve("./dist"),
     filename: "[name].js",
   },
+
+  devServer: {
+    contentBase: path.join(__dirname, "dist/"),
+    overlay: true,
+    stats: "errors-only",
+  },
+  devtool: "source-map",
+
   module: {
     rules: [
       {
