@@ -1,6 +1,5 @@
 const express = require("express");
 const morgan = require("morgan");
-const path = require("path");
 
 const app = express();
 
@@ -50,7 +49,7 @@ app.get("/api/history", (req, res) => {
 });
 
 app.post("/api/history", (req, res) => {
-  keyword = (req.query.keyword || "").trim();
+  const keyword = (req.query.keyword || "").trim();
   if (!keyword) return;
 
   history.filter(item => item.keyword !== keyword);
