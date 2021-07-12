@@ -5,9 +5,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const apiMocker = require("connect-api-mocker");
+const optimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+
+const mode = process.env.NODE_ENV || "development";
 
 module.exports = {
-  mode: "development",
+  mode,
   entry: {
     main: "./src/app.js",
   },
@@ -26,6 +30,24 @@ module.exports = {
     hot: true,
   },
   devtool: "source-map",
+
+  optimization: {
+    minimizer:
+      process.env.NODE_ENV === "production"
+        ? [
+            new optimizeCssAssetsWebpackPlugin(),
+            new TerserPlugin([
+              {
+                terserOptions: {
+                  compress: {
+                    drop_console: true,
+                  },
+                },
+              },
+            ]),
+          ]
+        : [],
+  },
 
   module: {
     rules: [
@@ -76,4 +98,7 @@ module.exports = {
       ? [new MiniCssExtractPlugin({ filename: "[name].css" })]
       : []),
   ],
+  watchOptions: {
+    poll: true,
+  },
 };
