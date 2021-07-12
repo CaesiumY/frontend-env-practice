@@ -6,7 +6,7 @@ const app = express();
 
 app.use(morgan("dev"));
 
-// app.use(express.static(path.join(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "../dist")));
 
 const port = process.env.PORT || 8081;
 const keywords = [
@@ -50,7 +50,7 @@ app.get("/api/history", (req, res) => {
 });
 
 app.post("/api/history", (req, res) => {
-  keyword = (req.query.keyword || "").trim();
+  const keyword = (req.query.keyword || "").trim();
   if (!keyword) return;
 
   history.filter(item => item.keyword !== keyword);
