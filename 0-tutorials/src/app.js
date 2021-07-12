@@ -13,3 +13,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   console.log(process.env.NODE_ENV); // "development"
 });
+
+if (module.hot) {
+  console.log("hot reloading ON!");
+
+  module.hot.accept(bonobono, () => {
+    console.log("Module Replaced");
+  });
+}
