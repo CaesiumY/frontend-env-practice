@@ -18,8 +18,9 @@ module.exports = {
     stats: "errors-only",
     proxy: {
       "/api": "http://localhost:8081"
-    }
+    },
     // TODO: 여기에 핫로딩을 설정하세요
+    hot: true
   },
   module: {
     rules: [
