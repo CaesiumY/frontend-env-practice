@@ -15,6 +15,7 @@ function component() {
   myIcon.src = siro;
 
   btn.onclick = printMe;
+  btn.innerText = "click me";
 
   element.appendChild(myIcon);
   element.appendChild(btn);
