@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export default function printMe() {
-  console.log("print js bundle");
+  console.log(_.join(["print", "me"]));
 }
