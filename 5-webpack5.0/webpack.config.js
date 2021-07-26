@@ -1,12 +1,12 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
   entry: { index: "./src/index.js", print: "./src/print.js" },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     // assetModuleFilename: "images/[hash][ext][query]", // asset 타입을 통해 만들어진 파일들을 모두 모아두는 곳을 설정합니다.
     clean: true, // dist의 폴더 내용을 제거하고 다시 설치
@@ -60,13 +60,22 @@ module.exports = {
   },
   plugins: [
     new htmlWebpackPlugin({
-      title: "Development",
+      title: "Caching",
     }), // html 파일을 동적으로 다시 생성
-    new MiniCssExtractPlugin() // css 파일을 따로 생성해 최적화
+    new MiniCssExtractPlugin(), // css 파일을 따로 생성해 최적화
   ],
   optimization: {
+    moduleIds: 'deterministic',
+
     splitChunks: {
-      chunks: "all",
-    }, // 중복된 부분을 split 해준다.
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    }, // 중복된 부분을 분할해준다.
+    runtimeChunk: "single", // 런타임 번들을 분할해준다.
   },
 };
