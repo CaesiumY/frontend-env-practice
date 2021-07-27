@@ -12,7 +12,11 @@ module.exports = {
     clean: true, // dist의 폴더 내용을 제거하고 다시 설치
     publicPath: "/", // 서버에서 파일이 올바르게 제공되는지 확인하기 위해 요청할 주소
   },
-  devtool: "inline-source-map",
+  devtool: "eval-cheap-module-source-map",
+  devserver: {
+    contentBase: "/dist",
+    hot: true,
+  },
   module: {
     rules: [
       {
@@ -65,14 +69,14 @@ module.exports = {
     new MiniCssExtractPlugin(), // css 파일을 따로 생성해 최적화
   ],
   optimization: {
-    moduleIds: 'deterministic',
+    moduleIds: "deterministic",
 
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
+          name: "vendors",
+          chunks: "all",
         },
       },
     }, // 중복된 부분을 분할해준다.
