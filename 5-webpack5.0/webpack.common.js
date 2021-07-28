@@ -1,6 +1,7 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   entry: { index: "./src/index.js", print: "./src/print.js" },
@@ -10,7 +11,7 @@ module.exports = {
     // assetModuleFilename: "images/[hash][ext][query]", // asset 타입을 통해 만들어진 파일들을 모두 모아두는 곳을 설정합니다.
     clean: true, // dist의 폴더 내용을 제거하고 다시 설치
     publicPath: "/", // 서버에서 파일이 올바르게 제공되는지 확인하기 위해 요청할 주소
-  },  
+  },
   module: {
     rules: [
       {
@@ -58,17 +59,22 @@ module.exports = {
   },
   plugins: [
     new htmlWebpackPlugin({
-      title: "Production",
+      title: "PWA",
     }), // html 파일을 동적으로 다시 생성
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
     }), // css 파일을 따로 생성해 최적화
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+    }), // PWA를 위한 플러그인
   ],
   optimization: {
     moduleIds: "deterministic",
 
     splitChunks: {
+      chunks: 'all',
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
