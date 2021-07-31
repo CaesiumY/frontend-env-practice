@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
-    // assetModuleFilename: "images/[hash][ext][query]", // asset 타입을 통해 만들어진 파일들을 모두 모아두는 곳을 설정합니다.
+    // assetModuleFilename: "images/[hash][ext][query]", // Rules.type: asset 타입을 통해 만들어진 파일들을 모두 모아두는 곳을 설정합니다.
     clean: true, // dist의 폴더 내용을 제거하고 다시 설치
     publicPath: "/", // 서버에서 파일이 올바르게 제공되는지 확인하기 위해 요청할 주소
   },
@@ -60,6 +60,7 @@ module.exports = {
   plugins: [
     new htmlWebpackPlugin({
       title: "PWA",
+      filename: "/static/index.html",
     }), // html 파일을 동적으로 다시 생성
     new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -74,7 +75,7 @@ module.exports = {
     moduleIds: "deterministic",
 
     splitChunks: {
-      chunks: 'all',
+      chunks: "all",
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,

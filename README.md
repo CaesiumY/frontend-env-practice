@@ -26,6 +26,8 @@
 
 기존 강의는 `4.0`기반이므로, `5.0` 트렌드에 맞춰 개인적으로 공부 및 실습
 
+[웹팩 쓰다가 막히면 간단하게 이곳을 찾아보기!](5-webpack5.0/webpack.common.js)
+
 > 5.0 공부 참고자료
 > - [웹팩 핸드북](https://joshua1988.github.io/webpack-guide/)
 > - [웹팩 공식문서(한글화)](https://webpack.kr/)
